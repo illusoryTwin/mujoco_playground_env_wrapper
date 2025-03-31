@@ -1,0 +1,13 @@
+mujoco
+mujoco_mjx
+brax
+mujoco_playground
+mediapy
+flax
+jax
+jaxlib
+ml_collections
+numpy
+matplotlib
+etils
+orbax-checkpoint

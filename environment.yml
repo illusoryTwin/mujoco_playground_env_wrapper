@@ -1,0 +1,23 @@
+name: mj_playground_env
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - ipython
+  - conda-forge::mujoco
+  - pip:
+    - mujoco
+    - mujoco_mjx
+    - brax
+    - playground==0.0.4
+    - matplotlib
+    - mediapy
+    - jax==0.5.2
+    - jaxlib==0.5.1
+    # - mujoco_menagerie
+    # - ml_collections==0.1.1
+    # - numpy==1.23.5
+    # - flax==0.7.5
+    # - orbax-checkpoint==0.2.2
+    - etils
