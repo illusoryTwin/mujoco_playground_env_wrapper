@@ -1,6 +1,6 @@
 from . import config_dict
 
-def brax_ppo_config(env_config):
+def go1_handstand_brax_ppo_config(env_config):
 
   rl_config = config_dict.create(
       num_timesteps=100_000_000,

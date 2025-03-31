@@ -3,7 +3,7 @@ from mujoco_playground._src import mjx_env
 from etils import epath
 import numpy as np
 
-def default_config() -> config_dict.ConfigDict:
+def go1_handstand_default_config() -> config_dict.ConfigDict:
   return config_dict.create(
       ctrl_dt=0.02,
       sim_dt=0.004,

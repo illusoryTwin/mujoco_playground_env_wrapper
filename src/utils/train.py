@@ -1,3 +1,48 @@
+import mujoco  
+
+
+from typing import Dict
+import functools
+import matplotlib.pyplot as plt
+from brax.training.agents.ppo import train as ppo
+from brax.training.agents.ppo import networks as ppo_networks
+from IPython import display
+from IPython.display import HTML, clear_output
+from datetime import datetime
+
+
+from mujoco_playground import wrapper
+from mujoco_playground import registry
+from mujoco_playground._src import mjx_env
+from mujoco_playground._src.env_wrapper.training_env_loader import TrainingEnvLoader
+from mujoco_playground._src.env_wrapper.go1_example.default_config import default_config
+from mujoco_playground._src.env_wrapper.go1_example.constants import Go1Constants
+from mujoco_playground._src.env_wrapper.go1_example.brax_ppo_params import brax_ppo_config
+from mujoco_playground._src.env_wrapper.go1_example.randomizer import domain_randomize
+from mujoco_playground._src.env_wrapper.go1_example.env import Go1JoystickEnv
+from mujoco_playground._src.gait import draw_joystick_command
+
+
+go1_default_config = default_config
+go1_brax_ppo_config = brax_ppo_config
+go1_randomizer = domain_randomize  # `randomizer` refers to the function directly
+go1_constants = Go1Constants
+
+
+go1_loader = TrainingEnvLoader(Go1JoystickEnv,
+                                          go1_constants,
+                                          go1_default_config,
+                                          go1_brax_ppo_config,
+                                          domain_randomize)
+go1_js_env_test = go1_loader.get_env()
+ppo_params = go1_loader.get_brax_ppo_config()
+
+env_name = 'Go1JoystickFlatTerrain'
+env_cfg_ref = registry.get_default_config(env_name)
+env_ref = registry.load(env_name)
+
+
+
 ppo_training_params = dict(ppo_params)
 network_factory = ppo_networks.make_ppo_networks
 if "network_factory" in ppo_params:
@@ -10,18 +55,18 @@ if "network_factory" in ppo_params:
 train_fn = functools.partial(
     ppo.train, **dict(ppo_training_params),
     network_factory=network_factory,
-    randomization_fn=randomizer,
+    randomization_fn=go1_randomizer,
     progress_fn=progress
 )
 
+
 make_inference_fn, params, metrics = train_fn(
-    environment=go1_js_env_test, #go1_js_env, #js_env, # env_test_, # go1_js_env, #env,
+    environment=go1_js_env_test,
     eval_env=registry.load(env_name, config=env_cfg),
     wrap_env_fn=wrapper.wrap_for_brax_training,
 )
 print(f"time to jit: {times[1] - times[0]}")
 print(f"time to train: {times[-1] - times[1]}")
-
 
 
 # Enable perturbation in the eval env.
@@ -38,9 +83,7 @@ jit_reset = jax.jit(eval_env.reset)
 jit_step = jax.jit(eval_env.step)
 jit_inference_fn = jax.jit(make_inference_fn(params, deterministic=True))
 
-
-#@title Rollout and Render
-from mujoco_playground._src.gait import draw_joystick_command
+# Rollout and Render
 
 x_vel = 0.5  #@param {type: "number"}
 y_vel = 0.0  #@param {type: "number"}
