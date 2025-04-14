@@ -16,7 +16,7 @@ dependencies = [
     "mujoco",
     "mujoco-mjx",
     "brax",
-    "playground=0.0.4",
+    "playground==0.0.4",
     # "mujoco_playground",
     "mediapy",
     "flax",
