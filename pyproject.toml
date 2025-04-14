@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "playground_env_wrapper"
+version = "0.0.1"
+readme = "README.md"
+description = "MuJoCo playground environment wrapper for RL experiments"
+authors = [
+    {name="Ekaterina Mozhegova", email="mozhegova04@gmail.com"}
+]
+requires-python = ">=3.8"
+
+dependencies = [
+    "mujoco",
+    "mujoco-mjx",
+    "brax",
+    "mujoco_playground",
+    "mediapy",
+    "flax",
+    "jax==0.5.2",
+    "jaxlib==0.5.1",
+    "ml_collections",
+    "numpy",
+    "matplotlib",
+    "etils",
+    "orbax-checkpoint"
+]
+
