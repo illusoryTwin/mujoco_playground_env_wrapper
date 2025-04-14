@@ -15,13 +15,13 @@ import functools
 from brax.training.agents.ppo import networks as ppo_networks
 from mujoco_playground import registry
 from mujoco_playground import wrapper
-from src.configs.go1.joystick_default_config import default_config
-from src.brax_ppo_configs.go1.joystick_brax_ppo_config import brax_ppo_config
+from src.env.go1.tasks.joystick.joystick_default_config import default_config
+from src.env.go1.tasks.joystick.joystick_brax_ppo_config import brax_ppo_config
 
-from src.randomizers.go1.go1_randomizer import domain_randomize
-from src.configs.constants.go1_constants import Go1Constants
-from src.loaders.training_env_loader import TrainingEnvLoader
-from src.environments.go1.go1_handstand_env import Go1JoystickEnv
+from src.env.go1.config.go1_randomizer import domain_randomize
+from src.env.go1.config.constants import Go1Constants
+from src.utils.training_env_loader import TrainingEnvLoader
+from src.env.go1.tasks.handstand.go1_handstand_env import Go1JoystickEnv
 from brax.training.agents import ppo
 from src.utils.progress import progress
 from datetime import datetime

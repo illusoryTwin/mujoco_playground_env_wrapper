@@ -6,7 +6,7 @@ from envs.h1_env import H1InPlaceEnv
 from configs.constants.h1 import H1Constants
 
 from configs.default_config import default_config
-from loaders.training_env_loader import TrainingEnvLoader
+from src.utils.training_env_loader import TrainingEnvLoader
 from loaders.go1.go1_constants import Go1Constants
 from configs.brax_ppo_config import brax_ppo_config
 from randomizers.domain_randomize import domain_randomize

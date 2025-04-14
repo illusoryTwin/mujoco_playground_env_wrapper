@@ -1,8 +1,6 @@
-from . import config_dict
+from .....brax_ppo_configs.go1 import config_dict
 
-def brax_ppo_config(env_config) -> config_dict.ConfigDict:
-  """Returns tuned Brax PPO config for the given environment."""
-  # env_config = default_config() #custom_config # locomotion.get_default_config(env_name)
+def go1_handstand_brax_ppo_config(env_config):
 
   rl_config = config_dict.create(
       num_timesteps=100_000_000,
@@ -28,9 +26,8 @@ def brax_ppo_config(env_config) -> config_dict.ConfigDict:
       ),
   )
 
-  rl_config.num_timesteps = 200_000_000
-  rl_config.num_evals = 10
-  rl_config.num_resets_per_eval = 1
+  rl_config.num_timesteps = 100_000_000
+  rl_config.num_evals = 5
   rl_config.network_factory = config_dict.create(
       policy_hidden_layer_sizes=(512, 256, 128),
       value_hidden_layer_sizes=(512, 256, 128),

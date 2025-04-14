@@ -8,8 +8,8 @@ import jax
 import jax.numpy as jp
 import math 
 import numpy as np 
-from src.configs.go1.joystick_default_config import default_config
-from .go1_env import Go1Env
+from src.env.go1.tasks.joystick.joystick_default_config import default_config
+from ...go1_env import Go1Env
 
 class Go1JoystickEnv(Go1Env):
   """Track a joystick command."""

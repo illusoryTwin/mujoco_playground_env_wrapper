@@ -1,4 +1,4 @@
-from . import config_dict 
+from ....brax_ppo_configs.h1 import config_dict 
 
 def brax_ppo_config(env_config) -> config_dict.ConfigDict:
   """Returns tuned Brax PPO config for the given environment."""

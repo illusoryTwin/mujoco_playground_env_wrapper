@@ -8,9 +8,9 @@ import jax
 import jax.numpy as jp
 import math 
 import numpy as np 
-from src.configs.go1.handstand_default_config import go1_handstand_default_config
+from src.env.go1.tasks.handstand.handstand_default_config import go1_handstand_default_config
 
-from .go1_env import Go1Env
+from ...go1_env import Go1Env
 # from .go1_handstand_config import go1_handstand_default_config
 
 
